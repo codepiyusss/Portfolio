@@ -79,8 +79,8 @@ export default function Contact() {
               
               <div className="text-center md:text-right hidden sm:block">
                 <p className="text-brand-text/60 font-medium text-sm mb-1">Or email me directly at</p>
-                <a href="mailto:contact@piyush.com" className="text-brand-text font-bold text-lg hover:text-brand-accent transition-colors relative group">
-                  contact@piyush.com
+                <a href="mailto:info.contactpiyush@gmail.com" className="text-brand-text font-bold text-lg hover:text-brand-accent transition-colors relative group">
+                  info.contactpiyush@gmail.com
                   <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-brand-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                 </a>
               </div>

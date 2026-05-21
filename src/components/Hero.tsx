@@ -3,6 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/MagneticButton";
+import { Typewriter } from "@/components/Typewriter";
 
 export default function Hero() {
   const name = "Piyush Tiwari";
@@ -73,9 +74,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-xl md:text-2xl text-brand-text/70 font-medium max-w-2xl mx-auto mb-10 cursor-default"
+          className="text-xl md:text-2xl text-brand-text/70 font-medium max-w-2xl mx-auto mb-10 cursor-default h-8"
         >
-          B.Tech CSE Student | Future AI Engineer
+          <Typewriter strings={["Learning AI...", "Building projects...", "Improving daily..."]} pauseTime={2000} />
         </motion.p>
 
         <motion.div

@@ -1,6 +1,7 @@
 "use client";
 
-import { Mail } from "lucide-react";
+import { Mail, Volume2, VolumeX } from "lucide-react";
+import { useSound } from "@/components/SoundContext";
 
 const GithubIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -18,6 +19,16 @@ const LinkedinIcon = () => (
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { isMuted, toggleMute } = useSound();
+
+  const secretClick = () => {
+    alert("System Overload: The matrix is breaking...");
+    document.body.style.transform = "scale(0.95) rotate(1deg)";
+    document.body.style.transition = "transform 0.5s ease-in-out";
+    setTimeout(() => {
+      document.body.style.transform = "none";
+    }, 2000);
+  };
 
   return (
     <footer className="relative mt-20 pt-16 pb-8 bg-brand-surface overflow-hidden">
@@ -51,17 +62,29 @@ export default function Footer() {
               <LinkedinIcon />
             </a>
             <a
-              href="mailto:contact@piyush.com"
+              href="mailto:info.contactpiyush@gmail.com"
               className="w-10 h-10 rounded-xl bg-brand-bg border border-brand-accent/10 flex items-center justify-center text-brand-text/80 hover:text-brand-accent hover:border-brand-accent hover:-translate-y-1 transition-all duration-300"
               aria-label="Email"
             >
               <Mail className="w-5 h-5" />
             </a>
+            <button
+              onClick={toggleMute}
+              className="w-10 h-10 rounded-xl bg-brand-bg border border-brand-accent/10 flex items-center justify-center text-brand-text/80 hover:text-brand-accent hover:border-brand-accent hover:-translate-y-1 transition-all duration-300"
+              aria-label="Toggle Sound"
+            >
+              {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+            </button>
           </div>
         </div>
         
         <div className="mt-12 pt-8 border-t border-brand-accent/10 text-center flex flex-col md:flex-row justify-between items-center text-brand-text/40 text-sm font-medium gap-4">
-          <p>© {currentYear} Piyush Tiwari. All rights reserved.</p>
+          <p>
+            © {currentYear} Piyush Tiwari. All rights reserved.
+            <button onClick={secretClick} className="opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity ml-4 text-xs font-bold text-brand-accent cursor-pointer">
+              [Don't Click]
+            </button>
+          </p>
           <div className="flex items-center gap-2">
             <span>Built with</span>
             <span className="text-brand-accent">❤</span>

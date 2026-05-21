@@ -26,7 +26,7 @@ export default function About() {
             className="text-center"
           >
             <p className="text-2xl md:text-3xl text-brand-text/90 leading-relaxed font-bold">
-              &ldquo;I&apos;m a Computer Science student exploring programming and AI. I enjoy building things, learning new technologies, and improving my skills step by step.&rdquo;
+              &ldquo;I&apos;m a CS student exploring programming and AI. I enjoy building things, learning new technologies, and improving my skills step by step.&rdquo;
             </p>
           </motion.div>
         </div>
