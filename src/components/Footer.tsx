@@ -39,7 +39,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-black text-brand-text mb-2 tracking-tight">Piyush Tiwari</h3>
-            <p className="text-brand-text/60 font-medium text-sm">B.Tech CSE Student • Future AI Engineer</p>
+            <p className="text-brand-text/60 font-medium text-sm">Python Developer | AI Systems</p>
           </div>
 
           <div className="flex items-center space-x-4">

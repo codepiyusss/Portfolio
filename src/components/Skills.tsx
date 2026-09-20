@@ -5,19 +5,39 @@ import { TiltCard } from "@/components/TiltCard";
 
 const skillCategories = [
   {
-    title: "Programming",
+    title: "Languages",
     skills: [
-      { name: "Python", desc: "Core language, building complex logic and algorithms." },
+      { name: "Python", desc: "Core language for backend systems, automation, and AI/ML work." },
       { name: "Java", desc: "Solid foundation in OOP and structured backend systems." },
-      { name: "JS / TS", desc: "Creating modern, interactive frontend web experiences." },
+      { name: "JavaScript", desc: "Building interactive, modern frontend web experiences." },
+      { name: "HTML & CSS", desc: "Semantic markup and modern styling with Tailwind CSS." },
     ],
   },
   {
-    title: "Learning Focus",
+    title: "Frameworks & Tools",
     skills: [
-      { name: "AI Fundamentals", desc: "Exploring neural networks, deep learning logic, and AI modeling." },
-      { name: "Web Development", desc: "Mastering Next.js, React, and seamless UI/UX design." },
-      { name: "Machine Learning", desc: "Applying predictive logic and data structures." },
+      { name: "React & Next.js", desc: "Component-driven UIs with the Next.js app router." },
+      { name: "Flask", desc: "Lightweight Python backends and REST APIs for web apps." },
+      { name: "Node.js", desc: "Server-side JavaScript for full-stack applications." },
+      { name: "Git & GitHub", desc: "Version control, collaboration, and open-source workflows." },
+    ],
+  },
+  {
+    title: "AI / ML",
+    skills: [
+      { name: "scikit-learn", desc: "Building and evaluating machine learning models." },
+      { name: "NumPy", desc: "Numerical computing for data and ML pipelines." },
+      { name: "Librosa", desc: "Audio analysis and feature extraction, used in VoxShield." },
+      { name: "AI Systems", desc: "Designing practical AI-powered tools end to end." },
+    ],
+  },
+  {
+    title: "Deployment",
+    skills: [
+      { name: "Vercel", desc: "Shipping and hosting frontend projects with fast deploys." },
+      { name: "Render", desc: "Deploying Python/Flask backends and APIs." },
+      { name: "Vite", desc: "Fast build tooling for modern frontend projects." },
+      { name: "Three.js", desc: "Experimenting with 3D and interactive visuals on the web." },
     ],
   },
 ];
@@ -52,7 +72,7 @@ export function Skills() {
                 {category.title}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3 gap-4">
-                {category.skills.map((skill, sIdx) => (
+                {category.skills.map((skill) => (
                   <TiltCard key={skill.name} className="h-full">
                     <motion.div 
                       className="relative h-32 bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden cursor-default group"
