@@ -34,8 +34,8 @@ const skillCategories = [
   {
     title: "Deployment",
     skills: [
-      { name: "Vercel", desc: "Shipping and hosting frontend projects with fast deploys." },
-      { name: "Render", desc: "Deploying Python/Flask backends and APIs." },
+      { name: "Vercel", desc: "Hosting frontend projects with quick deploys." },
+      { name: "Render", desc: "Deploying Python and Flask backends and APIs." },
       { name: "Vite", desc: "Fast build tooling for modern frontend projects." },
       { name: "Three.js", desc: "Experimenting with 3D and interactive visuals on the web." },
     ],
@@ -85,7 +85,8 @@ export function Skills() {
                         transition={{ duration: 0.3 }}
                         className="absolute inset-0 flex items-center justify-center p-4 bg-brand-bg select-none"
                       >
-                        <span className="text-xl font-bold text-brand-text text-center">{skill.name}</span>
+                        <p className="text-lg font-bold text-brand-text">{skill.name}</p>
+                            
                       </motion.div>
                       
                       {/* Revealed Back Face */}
@@ -93,11 +94,8 @@ export function Skills() {
                         variants={{ initial: { y: "100%", opacity: 0 }, hover: { y: "0%", opacity: 1 } }}
                         initial="initial"
                         transition={{ duration: 0.3 }}
-                        className="absolute inset-0 flex items-center justify-center p-4 bg-brand-accent/10 select-none text-center"
-                      >
-                        <p className="text-sm font-medium text-brand-text/90 leading-tight">
-                          {skill.desc}
-                        </p>
+                        className="absolute inset-0 flex items-center justify-center p-4 bg-brand-accent/10 select-none text-center">
+                          <p className="text-sm font-medium text-brand-text/60 leading-relaxed">{skill.desc}</p>
                       </motion.div>
                     </motion.div>
                   </TiltCard>
