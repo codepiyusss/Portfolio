@@ -23,7 +23,7 @@ export default function Hero() {
           className="whitespace-nowrap"
         >
           <h1 className="text-[15rem] font-bold text-brand-text">
-            AI ENGINEER DEVELOPER AI ENGINEER DEVELOPER
+            CS STUDENT BUILDER LEARNER CS STUDENT BUILDER LEARNER
           </h1>
         </motion.div>
       </div>
@@ -36,7 +36,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-sm font-medium mb-8 cursor-default"
         >
           <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-          Available for opportunities
+          Open to internships and entry-level roles
         </motion.div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-brand-text tracking-tight mb-6 flex justify-center flex-wrap gap-x-6">
@@ -46,7 +46,7 @@ export default function Hero() {
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -10, scale: 1.1, color: "var(--accent)", rotate: Math.random() * 10 - 5 }}
+                whileHover={{ y: -10, scale: 1.1, color: "var(--accent)", rotate: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.05, type: "spring", stiffness: 200 }}
                 className="inline-block cursor-default"
               >
@@ -60,7 +60,7 @@ export default function Hero() {
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -10, scale: 1.1, color: "var(--primary-text)", rotate: Math.random() * 10 - 5 }}
+                whileHover={{ y: -10, scale: 1.1, color: "var(--primary-text)", rotate: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.05, type: "spring", stiffness: 200 }}
                 className="inline-block cursor-default"
               >

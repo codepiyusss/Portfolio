@@ -53,7 +53,8 @@ export function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">Detailed Skills & Focus</h2>
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-brand-accent mb-3">02 / Skills</p>
+          <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">Skills &amp; Focus</h2>
           <div className="w-24 h-1.5 bg-brand-accent rounded-full mx-auto" />
         </motion.div>
 

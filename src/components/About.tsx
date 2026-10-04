@@ -13,6 +13,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-brand-accent mb-3">01 / About</p>
           <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">About Me</h2>
           <div className="w-24 h-1.5 bg-brand-accent rounded-full mx-auto" />
         </motion.div>
@@ -43,8 +44,8 @@ export default function About() {
               theory, I like to learn by building.
             </p>
             <p className="text-base md:text-lg text-brand-text/60 font-medium leading-relaxed">
-              Outside of coursework, I spend most of my time shipping side projects, exploring
-              new frameworks, and pushing code to GitHub — currently learning by building, one
+              Outside of coursework, I spend most of my time working on side projects, exploring
+              new frameworks, and pushing code to GitHub. I am learning by building, one
               project at a time.
             </p>
           </motion.div>
@@ -54,13 +55,12 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto"
+            className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto"
           >
             {[
-              { label: "Projects Shipped", value: "15+" },
               { label: "Core Language", value: "Python" },
               { label: "Focus Area", value: "AI / ML" },
-              { label: "Currently", value: "B.Tech CSE" },
+              { label: "Studying", value: "B.Tech CSE" },
             ].map((stat) => (
               <div
                 key={stat.label}

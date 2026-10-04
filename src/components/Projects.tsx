@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Star } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { TiltCard } from "@/components/TiltCard";
 
 function GithubIcon({ className }: { className?: string }) {
@@ -29,35 +29,31 @@ type Project = {
   tech: string[];
   github: string;
   live?: string;
-  stars?: number;
 };
 
 const projects: Project[] = [
   {
     title: "VoxShield",
     description:
-      "An AI system that protects digital communications against audio deepfakes — analyzing audio streams in real time to detect synthesized voices and actively prevent voice-cloning impersonation attacks.",
+      "An AI system that protects digital communications against audio deepfakes. It analyzes audio to detect synthesized voices and help prevent voice-cloning impersonation.",
     tech: ["JavaScript", "AI / Audio Analysis"],
     github: "https://github.com/codepiyusss/VoxShield",
     live: "https://voxshield-psi.vercel.app",
-    stars: 10,
   },
   {
     title: "RepoPilot-AI",
     description:
-      "A college project built with Flask that explores the GitHub REST API — paste any repo link and get its stats, activity, and details rendered on a clean dashboard.",
+      "A college project built with Flask that explores the GitHub REST API. Paste a repo link and see its stats, activity, and details on a dashboard.",
     tech: ["Python", "Flask", "GitHub API"],
     github: "https://github.com/codepiyusss/RepoPilot-AI",
     live: "https://repo-pilot-ai-tau.vercel.app",
-    stars: 4,
   },
   {
     title: "ATS-Check",
     description:
-      "A Flask web app that analyzes PDF resumes for ATS compatibility — flags missing keywords, evaluates formatting, and gives AI-powered suggestions to improve job application success.",
+      "A Flask web app that analyzes PDF resumes for ATS compatibility. It flags missing keywords, checks formatting, and suggests improvements.",
     tech: ["Python", "Flask", "AI"],
     github: "https://github.com/codepiyusss/ATS-Check",
-    stars: 4,
   },
   {
     title: "RCU-Connect",
@@ -65,7 +61,6 @@ const projects: Project[] = [
       "A JavaScript web app built to help students at my university connect, share, and stay in the loop with campus life and resources.",
     tech: ["JavaScript", "Web App"],
     github: "https://github.com/codepiyusss/RCU-Connect",
-    stars: 1,
   },
   {
     title: "Hotel Management System",
@@ -73,7 +68,6 @@ const projects: Project[] = [
       "A Python-based hotel management system for handling room bookings, guest records, and billing through a structured console interface.",
     tech: ["Python"],
     github: "https://github.com/codepiyusss/hotel-management-system-in-python",
-    stars: 1,
   },
   {
     title: "Weather Dashboard",
@@ -81,7 +75,6 @@ const projects: Project[] = [
       "A Python weather dashboard that fetches live weather data and presents current conditions in a simple, readable interface.",
     tech: ["Python"],
     github: "https://github.com/codepiyusss/WEATHER-DASHBOARD",
-    stars: 1,
   },
   {
     title: "Student Result Management System",
@@ -89,7 +82,6 @@ const projects: Project[] = [
       "A Python application for recording student marks, computing results, and managing academic records efficiently.",
     tech: ["Python"],
     github: "https://github.com/codepiyusss/Student-Result-Management-System",
-    stars: 1,
   },
   {
     title: "Password Strength Checker",
@@ -97,7 +89,6 @@ const projects: Project[] = [
       "A clean, modern Tkinter-based GUI app that checks the strength of a user-entered password in real time.",
     tech: ["Python", "Tkinter"],
     github: "https://github.com/codepiyusss/Password-Strength-Checker",
-    stars: 1,
   },
 ];
 
@@ -112,10 +103,11 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-brand-accent mb-3">03 / Work</p>
           <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">Projects</h2>
           <div className="w-24 h-1.5 bg-brand-accent rounded-full mx-auto" />
           <p className="mt-6 text-lg text-brand-text/60 font-medium max-w-2xl mx-auto">
-            A selection of things I&apos;ve built while learning — from AI-powered tools to
+            A selection of things I&apos;ve built while learning, from AI-powered tools to
             practical Python systems.
           </p>
         </motion.div>
@@ -134,12 +126,6 @@ export default function Projects() {
                   whileHover={{ y: -10 }}
                   className="relative bg-brand-surface rounded-3xl p-8 border border-brand-accent/5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full min-h-[300px] group"
                 >
-                  {typeof project.stars === "number" && project.stars > 0 && (
-                    <div className="absolute top-6 right-6 flex items-center gap-1 text-brand-text/40 text-xs font-bold">
-                      <Star className="w-3.5 h-3.5" />
-                      {project.stars}
-                    </div>
-                  )}
 
                   <div className="w-14 h-14 bg-brand-bg rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-accent transition-colors duration-300">
                     <GithubIcon className="w-7 h-7 text-brand-accent group-hover:text-white transition-colors duration-300" />

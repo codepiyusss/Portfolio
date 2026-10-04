@@ -8,17 +8,17 @@ export function Goals() {
   const visions = [
     {
       title: "AI Engineer",
-      desc: "Deeply focused on mastering artificial intelligence and machine learning engineering.",
+      desc: "Focused on learning artificial intelligence and machine learning engineering.",
       icon: <BrainCircuit className="w-10 h-10 text-brand-accent" />,
     },
     {
-      title: "Impactful Tech",
-      desc: "Committed to building digital experiences that actually solve problems beautifully.",
+      title: "Useful Software",
+      desc: "Building tools that solve real problems and are pleasant to use.",
       icon: <Target className="w-10 h-10 text-brand-accent" />,
     },
     {
       title: "Continuous Learning",
-      desc: "Always exploring new frameworks, languages, and optimizing the development process.",
+      desc: "Exploring new frameworks and languages and improving how I work.",
       icon: <Lightbulb className="w-10 h-10 text-brand-accent" />,
     },
   ];
@@ -33,7 +33,8 @@ export function Goals() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">What I'm Working Towards</h2>
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-brand-accent mb-3">04 / Goals</p>
+          <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">What I&apos;m Working Towards</h2>
           <div className="w-24 h-1.5 bg-brand-accent rounded-full mx-auto" />
         </motion.div>
 

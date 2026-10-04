@@ -15,7 +15,7 @@ export function Statement() {
         >
           <span className="text-brand-accent text-6xl md:text-8xl leading-none font-black opacity-20 absolute -top-10 left-12 md:left-24 select-none">"</span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-brand-text leading-tight tracking-tight px-8">
-            I’m not the best yet, <br/>but I’m improving <br/>
+            I&apos;m not the best yet, <br/>but I&apos;m improving <br/>
             <span className="text-brand-accent relative inline-block">
               every day.
               <motion.span 

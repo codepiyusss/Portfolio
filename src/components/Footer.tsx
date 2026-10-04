@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Mail, Volume2, VolumeX } from "lucide-react";
 import { useSound } from "@/components/SoundContext";
 
@@ -21,25 +22,14 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { isMuted, toggleMute } = useSound();
 
-  const secretClick = () => {
-    alert("System Overload: The matrix is breaking...");
-    document.body.style.transform = "scale(0.95) rotate(1deg)";
-    document.body.style.transition = "transform 0.5s ease-in-out";
-    setTimeout(() => {
-      document.body.style.transform = "none";
-    }, 2000);
-  };
-
   return (
-    <footer className="relative mt-20 pt-16 pb-8 bg-brand-surface overflow-hidden">
-      {/* Top Gradient Border */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
+    <footer className="relative mt-20 pt-16 pb-8 bg-brand-surface overflow-hidden border-t border-brand-accent/20">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-black text-brand-text mb-2 tracking-tight">Piyush Tiwari</h3>
-            <p className="text-brand-text/60 font-medium text-sm">Python Developer | AI Systems</p>
+            <p className="text-brand-text/60 font-medium text-sm">CS student | Python and AI</p>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -71,7 +61,7 @@ export default function Footer() {
             <button
               onClick={toggleMute}
               className="w-10 h-10 rounded-xl bg-brand-bg border border-brand-accent/10 flex items-center justify-center text-brand-text/80 hover:text-brand-accent hover:border-brand-accent hover:-translate-y-1 transition-all duration-300"
-              aria-label="Toggle Sound"
+              aria-label={isMuted ? "Turn click sounds on" : "Turn click sounds off"}
             >
               {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
             </button>
@@ -80,16 +70,12 @@ export default function Footer() {
         
         <div className="mt-12 pt-8 border-t border-brand-accent/10 text-center flex flex-col md:flex-row justify-between items-center text-brand-text/40 text-sm font-medium gap-4">
           <p>
-            © {currentYear} Piyush Tiwari. All rights reserved.
-            <button onClick={secretClick} className="opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity ml-4 text-xs font-bold text-brand-accent cursor-pointer">
-              [Don't Click]
-            </button>
+            &copy; {currentYear} Piyush Tiwari. All rights reserved.
           </p>
-          <div className="flex items-center gap-2">
-            <span>Built with</span>
-            <span className="text-brand-accent">❤</span>
-            <span>in India</span>
-          </div>
+          <nav aria-label="Footer" className="flex items-center gap-6">
+            <Link href="/#contact" className="hover:text-brand-accent transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:text-brand-accent transition-colors">Privacy Policy</Link>
+          </nav>
         </div>
       </div>
     </footer>

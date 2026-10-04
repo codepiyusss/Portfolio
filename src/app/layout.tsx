@@ -5,7 +5,6 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { InteractiveBackground } from "@/components/InteractiveBackground";
 import { CursorSpotlight } from "@/components/CursorSpotlight";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { TerminalModal } from "@/components/TerminalModal";
 import { SoundProvider } from "@/components/SoundContext";
 import "./globals.css";
 
@@ -32,7 +31,6 @@ export default function RootLayout({
             <ScrollProgress />
             <CursorSpotlight />
             <InteractiveBackground />
-            <TerminalModal />
             <CustomCursor />
             {children}
           </ThemeProvider>
