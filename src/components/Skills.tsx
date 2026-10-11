@@ -1,110 +1,14 @@
-"use client";
+import { Section } from "./Section";
+import SkillExplorer from "./SkillExplorer";
 
-import { motion } from "framer-motion";
-import { TiltCard } from "@/components/TiltCard";
-
-const skillCategories = [
-  {
-    title: "Languages",
-    skills: [
-      { name: "Python", desc: "Core language for backend systems, automation, and AI/ML work." },
-      { name: "Java", desc: "Solid foundation in OOP and structured backend systems." },
-      { name: "JavaScript", desc: "Building interactive, modern frontend web experiences." },
-      { name: "HTML & CSS", desc: "Semantic markup and modern styling with Tailwind CSS." },
-    ],
-  },
-  {
-    title: "Frameworks & Tools",
-    skills: [
-      { name: "React & Next.js", desc: "Component-driven UIs with the Next.js app router." },
-      { name: "Flask", desc: "Lightweight Python backends and REST APIs for web apps." },
-      { name: "Node.js", desc: "Server-side JavaScript for full-stack applications." },
-      { name: "Git & GitHub", desc: "Version control, collaboration, and open-source workflows." },
-    ],
-  },
-  {
-    title: "AI / ML",
-    skills: [
-      { name: "scikit-learn", desc: "Building and evaluating machine learning models." },
-      { name: "NumPy", desc: "Numerical computing for data and ML pipelines." },
-      { name: "Librosa", desc: "Audio analysis and feature extraction, used in VoxShield." },
-      { name: "AI Systems", desc: "Designing practical AI-powered tools end to end." },
-    ],
-  },
-  {
-    title: "Deployment",
-    skills: [
-      { name: "Vercel", desc: "Hosting frontend projects with quick deploys." },
-      { name: "Render", desc: "Deploying Python and Flask backends and APIs." },
-      { name: "Vite", desc: "Fast build tooling for modern frontend projects." },
-      { name: "Three.js", desc: "Experimenting with 3D and interactive visuals on the web." },
-    ],
-  },
-];
-
-export function Skills() {
+export default function Skills() {
   return (
-    <section id="skills" className="py-24 mx-4 sm:mx-6 lg:mx-8 mb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="font-mono text-xs tracking-[0.3em] uppercase text-brand-accent mb-3">02 / Skills</p>
-          <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">Skills &amp; Focus</h2>
-          <div className="w-24 h-1.5 bg-brand-accent rounded-full mx-auto" />
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.map((category, idx) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
-              className="bg-brand-surface rounded-[3rem] p-8 sm:p-12 border border-brand-accent/5 shadow-sm"
-            >
-              <h3 className="text-2xl font-bold text-brand-text mb-8 flex items-center gap-3">
-                <span className="w-4 h-4 rounded-full bg-brand-accent animate-pulse" />
-                {category.title}
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3 gap-4">
-                {category.skills.map((skill) => (
-                  <TiltCard key={skill.name} className="h-full">
-                    <motion.div 
-                      className="relative h-32 bg-brand-bg rounded-2xl border border-brand-accent/10 overflow-hidden cursor-default group"
-                      whileHover="hover"
-                    >
-                      {/* Front Face */}
-                      <motion.div 
-                        variants={{ hover: { y: "-100%", opacity: 0 } }}
-                        transition={{ duration: 0.3 }}
-                        className="absolute inset-0 flex items-center justify-center p-4 bg-brand-bg select-none"
-                      >
-                        <p className="text-lg font-bold text-brand-text">{skill.name}</p>
-                            
-                      </motion.div>
-                      
-                      {/* Revealed Back Face */}
-                      <motion.div 
-                        variants={{ initial: { y: "100%", opacity: 0 }, hover: { y: "0%", opacity: 1 } }}
-                        initial="initial"
-                        transition={{ duration: 0.3 }}
-                        className="absolute inset-0 flex items-center justify-center p-4 bg-brand-accent/10 select-none text-center">
-                          <p className="text-sm font-medium text-brand-text/60 leading-relaxed">{skill.desc}</p>
-                      </motion.div>
-                    </motion.div>
-                  </TiltCard>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section id="skills" title="Skills">
+      <p className="-mt-4 mb-10 max-w-xl text-muted">
+        Select a skill to see where I used it. Greyed-out skills are ones I&apos;ve learned but haven&apos;t used in a
+        project shown here yet.
+      </p>
+      <SkillExplorer />
+    </Section>
   );
 }

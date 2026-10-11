@@ -1,40 +1,38 @@
-import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { CustomCursor } from "@/components/CustomCursor";
-import { InteractiveBackground } from "@/components/InteractiveBackground";
-import { CursorSpotlight } from "@/components/CursorSpotlight";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { SoundProvider } from "@/components/SoundContext";
+import type { Metadata, Viewport } from "next";
+import "@fontsource/poppins/latin-400.css";
+import "@fontsource/poppins/latin-500.css";
+import "@fontsource/poppins/latin-600.css";
+import "@fontsource/poppins/latin-700.css";
 import "./globals.css";
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-});
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Piyush Tiwari | Portfolio",
-  description: "Computer Science student exploring programming and AI. Welcome to my portfolio.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-phi-fawn-98dglblujq.vercel.app"),
+  title: "Piyush Tiwari",
+  description:
+    "B.Tech CSE (AI/ML) student building machine learning projects in Python. Open to internships and entry-level roles.",
+  openGraph: {
+    title: "Piyush Tiwari",
+    description: "Python developer and AI/ML student. Open to internships and entry-level roles.",
+    type: "website",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0d1117" },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${outfit.variable} antialiased h-full scroll-smooth`}>
-      <body className="min-h-full flex flex-col font-sans bg-brand-bg text-brand-text overflow-x-hidden transition-colors duration-300">
-        <SoundProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-            <ScrollProgress />
-            <CursorSpotlight />
-            <InteractiveBackground />
-            <CustomCursor />
-            {children}
-          </ThemeProvider>
-        </SoundProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen font-sans">
+        {/* Light by default. The toggle in the navbar switches to dark. */}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

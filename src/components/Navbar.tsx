@@ -1,79 +1,66 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { MagneticButton } from "@/components/MagneticButton";
+import { ThemeToggle } from "./ThemeToggle";
+
+const links = [
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#timeline", label: "Timeline" },
+  { href: "#resume", label: "Resume" },
+  { href: "#contact", label: "Contact" },
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Github", href: "https://github.com/codepiyusss/" },
-  ];
+  const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-accent/10 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl font-bold tracking-tighter text-brand-text hover:text-brand-accent transition-colors">
-              Piyush.
-            </a>
-          </div>
-          
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-brand-text/80 hover:text-brand-accent text-sm font-medium transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-            <div className="flex items-center space-x-4">
-              <MagneticButton>
-                <a
-                  href="#contact"
-                  className="px-5 py-2.5 rounded-full bg-brand-accent text-white text-sm font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  Connect
-                </a>
-              </MagneticButton>
-            </div>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-[1080px] items-center justify-between pl-[var(--pad-l)] pr-6 sm:pr-8">
+        <a href="#home" className="text-lg font-semibold tracking-tight">
+          Piyush
+        </a>
 
-          <div className="md:hidden flex items-center space-x-4">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-brand-text hover:text-brand-accent transition-colors focus:outline-none"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+        <div className="flex items-center gap-2">
+          <nav aria-label="Main" className="hidden md:block">
+            <ul className="flex items-center gap-7 text-sm font-medium text-muted">
+              {links.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="hover:text-ink">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <span className="hidden w-3 md:block" />
+          <ThemeToggle />
+          <button
+            type="button"
+            className="inline-flex h-10 items-center rounded-md border border-line bg-surface px-3 text-sm font-medium md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-brand-bg border-b border-brand-accent/10">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block px-3 py-2 text-base font-medium text-brand-text/80 hover:text-brand-accent hover:bg-brand-accent/5 rounded-xl transition-colors"
-              >
-                {link.name}
-              </a>
+      {open && (
+        <nav id="mobile-nav" aria-label="Main" className="border-t border-line bg-bg md:hidden">
+          <ul className="mx-auto max-w-[1080px] py-2 pl-[var(--pad-l)] pr-6">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} onClick={() => setOpen(false)} className="block py-2.5 text-base font-medium">
+                  {l.label}
+                </a>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </nav>
       )}
-    </nav>
+    </header>
   );
 }

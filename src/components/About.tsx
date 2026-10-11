@@ -1,78 +1,45 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { education } from "@/data/profile";
+import { Section } from "./Section";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-brand-surface rounded-[3rem] mx-4 sm:mx-6 lg:mx-8 mb-8 shadow-sm transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="font-mono text-xs tracking-[0.3em] uppercase text-brand-accent mb-3">01 / About</p>
-          <h2 className="text-4xl md:text-5xl font-black text-brand-text mb-4">About Me</h2>
-          <div className="w-24 h-1.5 bg-brand-accent rounded-full mx-auto" />
-        </motion.div>
+    <Section id="about" title="About">
+      <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr]">
+        <div className="space-y-9">
+          <Block title="What I build">
+            Machine learning projects in Python. The two main ones so far work with audio (VoxShield) and text (ATS
+            Check), and both end up as a web app you can actually use.
+          </Block>
+          <Block title="How I work">
+            I learn by building, then fixing what breaks. On VoxShield I led a team of six, and we took it from feature
+            extraction all the way to a deployed API with a web interface.
+          </Block>
+          <Block title="What's next">
+            I&apos;m looking for an internship or entry-level role in machine learning or backend development, where I
+            can keep building and learn from people who ship.
+          </Block>
+        </div>
 
-        <div className="max-w-3xl mx-auto items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center"
-          >
-            <p className="text-2xl md:text-3xl text-brand-text/90 leading-relaxed font-bold">
-              &ldquo;I&apos;m a CS student exploring programming and AI. I enjoy building things, learning new technologies, and improving my skills step by step.&rdquo;
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-10 text-center space-y-4"
-          >
-            <p className="text-base md:text-lg text-brand-text/60 font-medium leading-relaxed">
-              I&apos;m pursuing a B.Tech in Computer Science & Engineering, with a focus on
-              machine learning, backend engineering, and AI systems. Rather than just studying
-              theory, I like to learn by building.
-            </p>
-            <p className="text-base md:text-lg text-brand-text/60 font-medium leading-relaxed">
-              Outside of coursework, I spend most of my time working on side projects, exploring
-              new frameworks, and pushing code to GitHub. I am learning by building, one
-              project at a time.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto"
-          >
-            {[
-              { label: "Core Language", value: "Python" },
-              { label: "Focus Area", value: "AI / ML" },
-              { label: "Studying", value: "B.Tech CSE" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="bg-brand-bg rounded-2xl px-4 py-5 text-center border border-brand-accent/10"
-              >
-                <p className="text-lg md:text-xl font-black text-brand-accent mb-1">{stat.value}</p>
-                <p className="text-xs font-bold text-brand-text/50 uppercase tracking-wide">{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
+        <div className="self-start border-l-[3px] border-accent pl-6">
+          <h3 className="text-xl font-semibold">Education</h3>
+          <p className="mt-3 font-medium">{education.university}</p>
+          <p className="text-ink/85">{education.degree}</p>
+          <p className="mt-1 text-muted">
+            {education.years}. CGPA {education.cgpa}
+          </p>
+          <p className="mt-5 text-sm font-medium">Relevant coursework</p>
+          <p className="text-sm text-muted">{education.coursework.join(", ")}</p>
         </div>
       </div>
-    </section>
+    </Section>
+  );
+}
+
+function Block({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h3 className="mb-2 text-xl font-semibold">{title}</h3>
+      <p className="max-w-xl text-lg leading-relaxed text-ink/85">{children}</p>
+    </div>
   );
 }

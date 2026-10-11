@@ -1,61 +1,157 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
-:root, html.light, [data-theme="light"] {
-  --background: #FFFCE9;
+/* Light is the default. The dark values are your #0d1117 and #ff1e27. */
+:root {
+  color-scheme: light;
+  --bg: #f6f8fa;
   --surface: #ffffff;
-  --accent: #FF4D00;
-  --primary-text: #3D241A;
-  --secondary-text: #8C776F;
+  --line: #d0d7de;
+  --ink: #0d1117;
+  --muted: #57606a;
+  --accent: #ff1e27;
+  --accent-text: #c4000a; /* darker red so small text stays readable on light */
+  --on-accent: #ffffff;
+
+  --pad-l: 3.25rem;
+  --thread-x: 18px;
 }
 
-html.dark, [data-theme="dark"] {
-  --background: #0E0E0E;
-  --surface: #1A1A1A;
-  --accent: #FF4D00;
-  --primary-text: #F5F5F5;
-  --secondary-text: #A0A0A0;
+.dark {
+  color-scheme: dark;
+  --bg: #0d1117;
+  --surface: #161b22;
+  --line: #30363d;
+  --ink: #e6edf3;
+  --muted: #9198a1;
+  --accent: #ff1e27;
+  --accent-text: #ff1e27;
+  --on-accent: #ffffff;
 }
 
-@theme {
-  --color-brand-bg: var(--background);
-  --color-brand-surface: var(--surface);
-  --color-brand-accent: var(--accent);
-  --color-brand-text: var(--primary-text);
-  --color-brand-text-muted: var(--secondary-text);
-  
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+@media (min-width: 640px) {
+  :root {
+    --pad-l: 4.5rem;
+    --thread-x: 24px;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-on-accent: var(--on-accent);
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 ::selection {
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- The thread: one line down the left edge of the page ---- */
+.frame {
+  position: relative;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1080px;
+  padding-left: var(--pad-l);
+  padding-right: 1.5rem;
+}
+@media (min-width: 640px) {
+  .frame { padding-right: 2rem; }
+}
+.frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--thread-x);
+  width: 1px;
+  background: var(--line);
+}
+
+/* Each section is a knot on the thread */
+.knot::before {
+  content: "";
+  position: absolute;
+  top: 5.6rem;
+  left: calc(var(--thread-x) - var(--pad-l) - 5px);
+  width: 11px;
+  height: 11px;
+  border-radius: 9999px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+}
+
+/* ---- The spider that descends the thread as you scroll ---- */
+.spider-thread {
+  position: fixed;
+  top: 0;
+  left: max(var(--thread-x), calc((100% - 1080px) / 2 + var(--thread-x)));
+  width: 0;
+  height: 0;
+  z-index: 60;
+  pointer-events: none;
+  --y: 88px;
+  --s: 0.8;
+}
+.spider-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.5px;
+  height: var(--y);
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+.spider-body {
+  position: absolute;
+  left: 0;
+  top: var(--y);
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -6px;
+  color: var(--ink);
+  scale: var(--s);
+  transform-origin: 50% 19%;
+  animation: sway 5.5s ease-in-out infinite alternate;
+}
+@keyframes sway {
+  from { rotate: -7deg; }
+  to { rotate: 7deg; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  html { scroll-behavior: auto; }
+  .spider-body { animation: none; }
 }
-
-body {
-  background-color: var(--background);
-  color: var(--primary-text);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+@media print {
+  .spider-thread { display: none; }
 }
