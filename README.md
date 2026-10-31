@@ -2,7 +2,7 @@
  
 My personal portfolio website. It shows who I am, my skills, and the projects I have built while studying B.Tech Computer Science and Engineering.
  
-Live site: https://portfolio-phi-fawn-98dglblujq.vercel.app
+Live site: https://codepiyusss.vercel.app/
  
 ## What is on the site
  
