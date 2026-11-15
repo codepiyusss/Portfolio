@@ -1,48 +1,46 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Light is the default. The dark values are your #0d1117 and #ff1e27. */
+/*
+  Palette
+  #ffe9da peach   #001930 navy   #000e1b deep navy   #ff6300 orange   #ff3d00 red-orange
+  Light (default): peach page, navy text.  Dark: deep-navy page, navy panels, peach text.
+*/
 :root {
   color-scheme: light;
-  --bg: #f6f8fa;
-  --surface: #ffffff;
-  --line: #d0d7de;
-  --ink: #0d1117;
-  --muted: #57606a;
-  --accent: #ff1e27;
-  --accent-text: #c4000a; /* darker red so small text stays readable on light */
+  --bg: #ffe9da;
+  --panel: #fff4ed; /* peach, lightened */
+  --ink: #001930;
+  --muted: #4c5b69;
+  --line: rgb(0 25 48 / 0.15);
+  --accent: #ff6300;
+  --accent-strong: #ff3d00;
+  --accent-text: #b32d00; /* darker #ff3d00 so small link text stays readable on peach */
   --on-accent: #ffffff;
-
-  --pad-l: 3.25rem;
-  --thread-x: 18px;
 }
 
 .dark {
   color-scheme: dark;
-  --bg: #0d1117;
-  --surface: #161b22;
-  --line: #30363d;
-  --ink: #e6edf3;
-  --muted: #9198a1;
-  --accent: #ff1e27;
-  --accent-text: #ff1e27;
+  --bg: #000e1b;
+  --panel: #001930;
+  --ink: #ffe9da;
+  --muted: rgb(255 233 218 / 0.68);
+  --line: rgb(255 233 218 / 0.14);
+  --accent: #ff6300;
+  --accent-strong: #ff3d00;
+  --accent-text: #ff6300;
   --on-accent: #ffffff;
-}
-
-@media (min-width: 640px) {
-  :root {
-    --pad-l: 4.5rem;
-    --thread-x: 24px;
-  }
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-line: var(--line);
+  --color-panel: var(--panel);
+  --color-surface: var(--panel);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --color-accent-text: var(--accent-text);
   --color-on-accent: var(--on-accent);
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
@@ -50,7 +48,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4.5rem;
 }
 
 body {
@@ -64,7 +62,7 @@ body {
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--accent-strong);
   color: var(--on-accent);
 }
 
@@ -74,46 +72,27 @@ body {
   border-radius: 2px;
 }
 
-/* ---- The thread: one line down the left edge of the page ---- */
-.frame {
-  position: relative;
+/* ---- The column: one centered panel held between two thin lines ---- */
+.screen {
   margin-inline: auto;
-  width: 100%;
-  max-width: 1080px;
-  padding-left: var(--pad-l);
-  padding-right: 1.5rem;
-}
-@media (min-width: 640px) {
-  .frame { padding-right: 2rem; }
-}
-.frame::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--thread-x);
-  width: 1px;
-  background: var(--line);
+  width: calc(100% - 24px);
+  max-width: 820px;
+  background: var(--panel);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  min-height: 100vh;
 }
 
-/* Each section is a knot on the thread */
-.knot::before {
-  content: "";
-  position: absolute;
-  top: 5.6rem;
-  left: calc(var(--thread-x) - var(--pad-l) - 5px);
-  width: 11px;
-  height: 11px;
-  border-radius: 9999px;
-  background: var(--bg);
-  border: 2px solid var(--ink);
+/* Diagonal hatch used for separators and the cover */
+.hatch {
+  background-image: repeating-linear-gradient(135deg, var(--line) 0 1px, transparent 1px 7px);
 }
 
-/* ---- The spider that descends the thread as you scroll ---- */
+/* ---- The spider rides the left line of the column ---- */
 .spider-thread {
   position: fixed;
   top: 0;
-  left: max(var(--thread-x), calc((100% - 1080px) / 2 + var(--thread-x)));
+  left: calc(max(12px, (100% - 820px) / 2) + 0.5px);
   width: 0;
   height: 0;
   z-index: 60;
@@ -127,7 +106,7 @@ body {
   left: 0;
   width: 1.5px;
   height: var(--y);
-  background: var(--accent);
+  background: var(--accent-strong);
   transform: translateX(-50%);
 }
 .spider-body {
@@ -155,3 +134,6 @@ body {
 @media print {
   .spider-thread { display: none; }
 }
+
+/* Native <details> arrow is replaced by our own chevron */
+summary::-webkit-details-marker { display: none; }

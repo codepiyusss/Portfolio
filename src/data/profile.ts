@@ -1,4 +1,5 @@
-import type { IconName } from "@/components/Icons.tsx";
+import type { IconName } from "@/components/Icons";
+import { projectIndex } from "./projects";
 
 export const profile = {
   name: "Piyush Tiwari",
@@ -7,11 +8,15 @@ export const profile = {
   github: "https://github.com/codepiyusss",
   linkedin: "https://www.linkedin.com/in/codepiyusss",
   resume: "/Piyush_Tiwari_Resume.pdf",
+  location: "Jharkhand, India",
+  // Put a photo in public/ and set its path, for example "/avatar.jpg". Empty shows initials.
+  avatar: "",
 };
 
 export const education = {
   university: "Ramchandra Chandravanshi University",
-  degree: "B.Tech, Computer Science and Engineering (AI/ML)",
+  degree: "Bachelor of Technology",
+  field: "Computer Science and Engineering (AI/ML)",
   years: "2024 to 2028",
   cgpa: "8.18 / 10",
   coursework: [
@@ -43,16 +48,17 @@ export type Skill = { name: string; projects: string[]; note?: string };
 
 const NOT_YET = "I've learned this, but it isn't in one of the projects shown here yet.";
 const COURSE = "Studied in my B.Tech coursework.";
-const ALL = ["voxshield", "ats-check", "repopilot", "rcu-connect", "hotel", "weather", "results", "password"];
+// Every project that currently exists in projects.ts, so removing a project never breaks this list.
+const ALL = Object.keys(projectIndex);
 
 export const skillGroups: { group: string; items: Skill[] }[] = [
   {
     group: "Languages",
     items: [
-      { name: "Python", projects: ["voxshield", "ats-check", "repopilot", "hotel", "weather", "results", "password"] },
-      { name: "JavaScript", projects: ["voxshield", "rcu-connect"] },
-      { name: "HTML", projects: ["voxshield", "ats-check", "rcu-connect"] },
-      { name: "CSS", projects: ["voxshield", "ats-check", "rcu-connect"] },
+      { name: "Python", projects: ["voxshield", "ats-check", "repopilot", "weather", "results", "password"] },
+      { name: "JavaScript", projects: ["voxshield"] },
+      { name: "HTML", projects: ["voxshield", "ats-check"] },
+      { name: "CSS", projects: ["voxshield", "ats-check"] },
       { name: "C", projects: [], note: NOT_YET },
       { name: "Java", projects: [], note: NOT_YET },
     ],
@@ -62,9 +68,9 @@ export const skillGroups: { group: string; items: Skill[] }[] = [
     items: [
       { name: "Flask", projects: ["voxshield", "ats-check", "repopilot"] },
       { name: "Librosa", projects: ["voxshield"] },
-      { name: "scikit-learn", projects: ["voxshield"]},
+      { name: "scikit-learn", projects: ["voxshield"] },
       { name: "NumPy", projects: ["voxshield"] },
-      { name: "Pandas", projects: ["voxshield"] },
+      { name: "Pandas", projects: [], note: NOT_YET },
       { name: "Matplotlib", projects: [], note: NOT_YET },
     ],
   },
@@ -89,14 +95,4 @@ export const skillGroups: { group: string; items: Skill[] }[] = [
       { name: "Vite", projects: [], note: NOT_YET },
     ],
   },
-];
-
-// ---- Timeline ----
-export const timeline = [
-  {
-    when: "2024",
-    items: ["Started B.Tech in Computer Science and Engineering (AI/ML) at Ramchandra Chandravanshi University"],
-  },
-  { when: "May 2026", items: ["Python, HackerRank", "Data Science and Analytics, HP LIFE"] },
-  { when: "Jul 2026", items: ["Machine Learning, Anaconda Inc.", "Data Visualisation, Forage"] },
 ];

@@ -1,84 +1,102 @@
 import { featured, smaller } from "@/data/projects";
-import { IconLink } from "./Icons";
+import { Icon, IconLink } from "./Icons";
 import { Section } from "./Section";
-import { WebCorner } from "./WebCorner.tsx";
+import { WebCorner } from "@/components/WebCorner";
+
+const tag = "rounded border border-line px-2 py-0.5 text-xs font-medium";
+
+function Row({
+  title,
+  subtitle,
+  open,
+  children,
+}: {
+  title: string;
+  subtitle: string;
+  open?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <li>
+      <details open={open} className="group">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 hover:bg-ink/[0.03] sm:px-6">
+          <span className="min-w-0">
+            <span className="block font-semibold">{title}</span>
+            <span className="block text-sm text-muted">{subtitle}</span>
+          </span>
+          <Icon name="chevron" size={18} className="shrink-0 text-muted transition-transform group-open:rotate-180" />
+        </summary>
+        <div className="px-5 pb-7 pt-1 sm:px-6">{children}</div>
+      </details>
+    </li>
+  );
+}
 
 export default function Projects() {
   return (
-    <Section id="projects" title="Projects">
-      <WebCorner level={2} className="pointer-events-none absolute -right-6 top-10 h-40 w-40 sm:right-0 sm:h-56 sm:w-56" />
+    <Section id="projects" title="Projects" count={featured.length + smaller.length} flush>
+      <WebCorner level={2} className="pointer-events-none absolute right-0 top-5 h-28 w-28 sm:h-40 sm:w-40" />
 
-      <div>
-        {featured.map((p) => (
-          <article key={p.id} className="border-t border-line py-10">
-            <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-4">
-              <div>
-                <h3 className="text-3xl font-semibold tracking-tight">{p.title}</h3>
-                <p className="mt-1 text-muted">
-                  {p.subtitle}
-                  {p.role ? `. ${p.role}` : ""}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <IconLink href={p.code} icon="github">
-                  Code
+      <ul className="divide-y divide-line">
+        {featured.map((p, i) => (
+          <Row key={p.id} title={p.title} subtitle={p.role ? `${p.subtitle}. ${p.role}` : p.subtitle} open={i === 0}>
+            <div className="mb-5 flex flex-wrap gap-3">
+              <IconLink href={p.code} icon="github">
+                Code
+              </IconLink>
+              {p.live && (
+                <IconLink href={p.live} icon="external" variant="primary">
+                  Live demo
                 </IconLink>
-                {p.live && (
-                  <IconLink href={p.live} icon="external" variant="primary">
-                    Live demo
-                  </IconLink>
-                )}
-              </div>
+              )}
             </div>
-
-            <div className="mt-8 grid gap-8 md:grid-cols-3">
-              <Part title="The problem">{p.problem}</Part>
-              <Part title="What I built">{p.built}</Part>
-              <Part title="How it works">{p.how}</Part>
-            </div>
-
-            <p className="mt-6 text-sm text-muted">Built with {p.stack.join(", ")}</p>
-          </article>
+            <dl className="space-y-4">
+              {[
+                ["The problem", p.problem],
+                ["What I built", p.built],
+                ["How it works", p.how],
+              ].map(([label, text]) => (
+                <div key={label} className="flex gap-4">
+                  <span aria-hidden="true" className="mt-[0.7rem] h-2 w-2 shrink-0 bg-accent-strong" />
+                  <div>
+                    <dt className="font-semibold">{label}</dt>
+                    <dd className="max-w-xl text-ink/90">{text}</dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label="Built with">
+              {p.stack.map((t) => (
+                <li key={t} className={tag}>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </Row>
         ))}
-      </div>
 
-      <h3 className="mb-2 mt-12 text-xl font-semibold">Smaller projects</h3>
-      <ul className="border-b border-line">
         {smaller.map((p) => (
-          <li key={p.id} className="grid gap-2 border-t border-line py-5 sm:grid-cols-[15rem_1fr_auto] sm:gap-8">
-            <div>
-              <p className="font-semibold">{p.title}</p>
-              <p className="text-sm text-muted">{p.stack.join(", ")}</p>
-            </div>
-            <p className="text-ink/85">{p.description}</p>
-            <p className="flex gap-5 sm:justify-end">
+          <Row key={p.id} title={p.title} subtitle={p.stack.join(", ")}>
+            <p className="max-w-xl text-ink/90">{p.description}</p>
+            <div className="mt-4 flex flex-wrap gap-4">
               <IconLink href={p.code} icon="github" variant="text">
                 Code
               </IconLink>
               {p.live && (
                 <IconLink href={p.live} icon="external" variant="text">
-                  Live
+                  Live demo
                 </IconLink>
               )}
-            </p>
-          </li>
+            </div>
+          </Row>
         ))}
       </ul>
 
-      <p className="mt-8">
+      <div className="border-t border-line px-5 py-4 sm:px-6">
         <IconLink href="https://github.com/codepiyusss?tab=repositories" icon="github" variant="text">
           All repositories on GitHub
         </IconLink>
-      </p>
+      </div>
     </Section>
-  );
-}
-
-function Part({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="border-t-2 border-accent pt-3">
-      <h4 className="mb-2 font-semibold">{title}</h4>
-      <p className="text-ink/85">{children}</p>
-    </div>
   );
 }

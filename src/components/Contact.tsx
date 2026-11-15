@@ -5,12 +5,12 @@ import Link from "next/link";
 import { profile } from "@/data/profile";
 import { Icon, IconLink } from "./Icons";
 import { Section } from "./Section";
-import { WebCorner } from "./WebCorner.tsx";
+import { WebCorner } from "@/components/WebCorner";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 const field =
-  "w-full rounded-md border border-line bg-surface px-4 py-3 text-ink placeholder:text-muted/70 focus:border-accent-text focus:outline-none focus:ring-2 focus:ring-accent/40";
+  "w-full rounded-md border border-line bg-bg px-4 py-3 text-ink placeholder:text-muted/70 focus:border-accent-strong focus:outline-none focus:ring-2 focus:ring-accent/40";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
@@ -54,16 +54,16 @@ export default function Contact() {
   }
 
   return (
-    <Section id="contact" title="Contact" className="pb-28">
-      <WebCorner level={3} className="pointer-events-none absolute -right-6 top-4 h-48 w-48 sm:right-0 sm:h-72 sm:w-72" />
+    <Section id="contact" title="Contact">
+      <WebCorner level={3} className="pointer-events-none absolute right-0 top-5 h-36 w-36 sm:h-52 sm:w-52" />
 
-      <div className="relative grid gap-12 md:grid-cols-[1fr_1.25fr]">
+      <div className="relative grid gap-10 md:grid-cols-[1fr_1.3fr]">
         <div>
-          <p className="max-w-sm text-lg leading-relaxed text-ink/85">
-            I&apos;m looking for an internship or an entry-level role. Send a message and it goes to my inbox, or email
-            me directly.
+          <p className="max-w-sm text-ink/90">
+            I&apos;m looking for an internship or an entry-level role. Send a message and it goes to my inbox, or email me
+            directly.
           </p>
-          <ul className="mt-8 space-y-4 text-base">
+          <ul className="mt-6 space-y-3 text-sm">
             <li>
               <IconLink href={`mailto:${profile.email}`} icon="mail" variant="plain">
                 {profile.email}
@@ -123,7 +123,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-[0.95rem] font-bold text-on-accent hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-md bg-accent-strong px-5 py-2.5 text-[0.95rem] font-bold text-on-accent hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Icon name="send" size={16} />
               {status === "sending" ? "Sending" : "Send message"}

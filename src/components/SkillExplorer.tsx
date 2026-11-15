@@ -20,7 +20,7 @@ export default function SkillExplorer() {
   const count = projects.length;
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[1.35fr_1fr]">
+    <div className="grid gap-10 md:grid-cols-[1.25fr_1fr]">
       <div className="space-y-8">
         {skillGroups.map((g) => (
           <div key={g.group}>
@@ -36,8 +36,8 @@ export default function SkillExplorer() {
                     onClick={() => setSelected(s.name)}
                     className={`rounded-md border px-3.5 py-2 text-sm font-medium ${
                       active
-                        ? "border-accent bg-accent text-on-accent"
-                        : `border-line bg-surface hover:border-muted ${s.projects.length ? "text-ink" : "text-muted"}`
+                        ? "border-accent-strong bg-accent-strong text-on-accent"
+                        : `border-line bg-panel hover:border-muted ${s.projects.length ? "text-ink" : "text-muted"}`
                     }`}
                   >
                     {s.name}
@@ -51,7 +51,7 @@ export default function SkillExplorer() {
 
       <aside
         aria-live="polite"
-        className="self-start rounded-md border border-line border-l-accent bg-surface p-6 lg:sticky lg:top-24"
+        className="self-start rounded-md border border-line border-l-accent-strong bg-panel p-5 md:sticky md:top-20"
         style={{ borderLeftWidth: 3 }}
       >
         <h3 className="text-2xl font-semibold tracking-tight">{skill.name}</h3>
