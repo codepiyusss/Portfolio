@@ -18,7 +18,7 @@ export const education = {
   degree: "Bachelor of Technology",
   field: "Computer Science and Engineering (AI/ML)",
   years: "2024 to 2028",
-  cgpa: "8.18 / 10",
+  cgpa: "8.18",
   coursework: [
     "Data Structures and Algorithms",
     "Object-Oriented Programming",
@@ -35,10 +35,10 @@ export const education = {
 export const socials: { icon: IconName; label: string; href: string; handle: string }[] = [
   { icon: "github", label: "GitHub", href: "https://github.com/codepiyusss", handle: "codepiyusss" },
   { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/codepiyusss", handle: "codepiyusss" },
-  { icon: "instagram", label: "Instagram", href: "", handle: "" },
-  { icon: "x", label: "X", href: "", handle: "" },
-  { icon: "telegram", label: "Telegram", href: "", handle: "" },
-  { icon: "reddit", label: "Reddit", href: "", handle: "" },
+  { icon: "instagram", label: "Instagram", href: "https://instagram.com/p.yussh", handle: "p.yussh" },
+  { icon: "x", label: "X", href: "https://x.com/codepiyusss", handle: "codepiyusss" },
+  { icon: "telegram", label: "Telegram", href: "https://t.me/p_yussh", handle: "p_yussh" },
+  { icon: "reddit", label: "Reddit", href: "https://www.reddit.com/user/pyussh/", handle: "pyussh" },
   { icon: "mail", label: "Email", href: "mailto:info.contactpiyush@gmail.com", handle: "info.contactpiyush@gmail.com" },
   { icon: "phone", label: "Phone", href: "tel:+918271276201", handle: "+91 82712 76201" },
 ];
