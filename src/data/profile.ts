@@ -10,7 +10,7 @@ export const profile = {
   resume: "/Piyush_Tiwari_Resume.pdf",
   location: "Jharkhand, India",
   // Put a photo in public/ and set its path, for example "/avatar.jpg". Empty shows initials.
-  avatar: "",
+  avatar: "/pfp.jpg",
 };
 
 export const education = {
@@ -28,10 +28,6 @@ export const education = {
   ],
 };
 
-/**
- * Footer social links. A link only appears once it has an address.
- * Fill in the empty ones below, for example: "https://instagram.com/yourname"
- */
 export const socials: { icon: IconName; label: string; href: string; handle: string }[] = [
   { icon: "github", label: "GitHub", href: "https://github.com/codepiyusss", handle: "codepiyusss" },
   { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/codepiyusss", handle: "codepiyusss" },

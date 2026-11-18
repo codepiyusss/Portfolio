@@ -4,10 +4,11 @@ import { featured, smaller } from "@/data/projects";
 /** Numbers come straight from the data files, so they stay true when you add or remove things. */
 export default function Stats() {
   const stats = [
-    { value: "8.18", label: "CGPA, out of 10" },
-    { value: String(featured.length + smaller.length), label: "Projects built" },
-    { value: String(certificates.length), label: "Certificates earned" },
-    { value: "6", label: "Team size led on VoxShield" },
+    { value: "8.18", label: "CGPA" },
+    { value: "Top 1", label: "Coder in my Collage" },
+    { value: String(featured.length + smaller.length + "+"), label: "Projects built" },
+    { value: String(certificates.length+ "+"), label: "Certificates earned" },
+    
   ];
 
   return (
